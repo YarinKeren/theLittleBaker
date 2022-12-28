@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "705800729726",
+    "firebase_url": "https://thelittlebaker-c56b4-default-rtdb.firebaseio.com",
+    "project_id": "thelittlebaker-c56b4",
+    "storage_bucket": "thelittlebaker-c56b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705800729726:android:78c87dfa32e9714df5d42f",
+        "android_client_info": {
+          "package_name": "com.example.thelittlebaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705800729726-q3c85nscs484bv31qo9bhof7qp6mpjhf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA36cH1m_mvogN9YEKYzcip66aeBSKnnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705800729726-q3c85nscs484bv31qo9bhof7qp6mpjhf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
