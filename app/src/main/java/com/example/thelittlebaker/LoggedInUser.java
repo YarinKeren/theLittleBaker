@@ -24,6 +24,7 @@ public class LoggedInUser {
     public static List<String>specialNames;
     public static List<String>cookiesNames;
     public static List<String>stripeCakesNames;
+    public static List<Order> ordersList;
 
     public static void canHeOrder(){
         LocalDateTime today=LocalDateTime.now();
@@ -99,6 +100,10 @@ public class LoggedInUser {
         }
         Log.d("FB","prepare: salty cookies list is ready");
     }
+
+    public static void prepareOrderList(){
+        ordersList=OrderFBHelper.convertToOrderList();
+    }
     public static void prepareSpecialList(){
         specialList=SpecialFBHelper.convertToSpecialList();
         specialNames=new ArrayList<>();
@@ -152,9 +157,40 @@ public class LoggedInUser {
     }
 
     public static boolean isInOrderList(Patisserie p){
-        for(int i=0 ; i< orderList.size() ; i++)
-            if (orderList.get(i).equals(p))
+        if(LoggedInUser.orderList.size()==0)
+            return false;
+        for(int i=0 ; i< LoggedInUser.orderList.size() ; i++)
+            if (LoggedInUser.orderList.get(i).theyAreEquals(p))
                 return true;
+        return false;
+    }
+
+    public static String createOrderSt(){
+        String order="";
+        for(int i=0 ; i<LoggedInUser.orderList.size() ; i++){
+
+            String productName=LoggedInUser.orderList.get(i).getName();
+            String orderDetails=LoggedInUser.orderList.get(i).getDetails();
+            int orderAmount=LoggedInUser.orderList.get(i).getOrderAmount();
+
+            order+="product name: "+productName+",";
+            order+=" amount to order: "+orderAmount+",";
+            if(!orderDetails.equals(""))
+                order+="details: "+orderDetails+".";
+            order+="\n";
+        }
+        return order;
+    }
+
+    public static boolean cheakIfMyOrderReady(){
+        for (int i = 0; i < LoggedInUser.ordersList.size(); i++) {
+            String name=LoggedInUser.ordersList.get(i).getUser();
+            if (LoggedInUser.loggedUser.getUserName().equals(name))
+                if (LoggedInUser.ordersList.get(i).isReady()) {
+                    LoggedInUser.loggedUser.setOrderId(LoggedInUser.ordersList.get(i).getId());
+                    return true;
+                }
+        }
         return false;
     }
 

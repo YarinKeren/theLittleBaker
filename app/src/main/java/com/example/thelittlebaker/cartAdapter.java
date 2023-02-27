@@ -44,28 +44,13 @@ public class cartAdapter extends ArrayAdapter {
 
 
 
-   /*   if (buffer.get(position) instanceof Special) {
-            if (!buffer.get(position).getName().endsWith("pie")) {
-                detalisText.setVisibility(View.VISIBLE);
-                detalisView.setVisibility(View.VISIBLE);
-                detalisText.setText(((Special) buffer.get(position)).getWriteOnCake());
-            }
-        }
-        else {
-                detalisText.setVisibility(View.INVISIBLE);
-                detalisView.setVisibility(View.INVISIBLE);
-        }
-*/
-       if (buffer.get(position).getDetails().equals("")){
+        if (buffer.get(position).getDetails().equals("")){
             detalisText.setVisibility(View.INVISIBLE);
             detalisView.setVisibility(View.INVISIBLE);
         }
-        else{
-            detalisText.setVisibility(View.VISIBLE);
-            detalisView.setVisibility(View.VISIBLE);
-            detalisText.setText(((Special) buffer.get(position)).getDetails());
+        else {
+            detalisText.setText(buffer.get(position).getDetails());
         }
-
         nameText.setText(buffer.get(position).getName());
         
         priceText.setText(String.valueOf(buffer.get(position).getPrice()));
@@ -75,7 +60,6 @@ public class cartAdapter extends ArrayAdapter {
             @Override
             public void onClick(View view) {
                 LoggedInUser.orderList.remove(buffer.get(position));
-                FirebaseHelper.deleteFromOrderList(buffer.get(position));
                 Toast.makeText(getContext(),"item deleted", Toast.LENGTH_LONG).show();
                 notifyDataSetChanged();
 

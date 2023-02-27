@@ -21,7 +21,7 @@ public class Special extends Patisserie{
         super(name, price,id);
     }
     public Special(String name,int price, int amount,String writeOnCake){
-        super(name,price,amount);
+        super(name,price,amount,writeOnCake);
         this.writeOnCake=writeOnCake;
     }
 

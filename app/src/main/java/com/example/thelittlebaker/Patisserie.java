@@ -5,9 +5,14 @@ package com.example.thelittlebaker;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 
-public class Patisserie {
+public class Patisserie implements DatabaseReference.CompletionListener {
 
     protected String name;
     protected double price;
@@ -180,7 +185,15 @@ public class Patisserie {
         this.numOfVotes = numOfVotes;
     }
 
+    public boolean theyAreEquals(Patisserie p){
+        if(this.name.equals(p.getName()) && this.price==p.getPrice())
+            return true;
+        return false;
+    }
 
 
+    @Override
+    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
 
+    }
 }

@@ -70,7 +70,7 @@ public class addStripeCakesActivity extends AppCompatActivity {
                 else {
                     StripeCakes temp = new StripeCakes(productName, productPrice);
                     temp.setDetails(" ");
-                    Toast.makeText(addStripeCakesActivity.this,"succes",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addStripeCakesActivity.this,"succses",Toast.LENGTH_SHORT).show();
                     if(temp!=null) {
                         Log.d("FB","object is ready");
                         boolean status = StripeCakesFBHelper.upload(temp);

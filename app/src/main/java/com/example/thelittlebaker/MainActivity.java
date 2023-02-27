@@ -3,6 +3,7 @@ package com.example.thelittlebaker;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +16,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
-    Button login,register,list,add,delete;
-    Intent loginActivity,registerActivity,userListActivity,addItemActivity,deleteItemActivity;
+    Button login,register,list,add,delete,orders;
+    Intent loginActivity,registerActivity,userListActivity,addItemActivity,deleteItemActivity,OrdersListActivity ;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         textView=findViewById(R.id.textView6);
         list=findViewById(R.id.userBtn);
         add=findViewById(R.id.addItem);
+        orders=findViewById(R.id.ordersBtn);
         delete=findViewById(R.id.deleteBtn);
         list.setVisibility(View.INVISIBLE);
         add.setVisibility(View.INVISIBLE);
         delete.setVisibility(View.INVISIBLE);
+        orders.setVisibility(View.INVISIBLE);
 
         if(LoggedInUser.loggedUser!=null) {
             Log.d("FB", "user access "+LoggedInUser.loggedUser.getAcecssLevel());
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 list.setVisibility(View.VISIBLE);
                 add.setVisibility(View.VISIBLE);
                 delete.setVisibility(View.VISIBLE);
+                orders.setVisibility(View.VISIBLE);
                 register.setVisibility(View.INVISIBLE);
                 login.setVisibility(View.INVISIBLE);
             }
@@ -73,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         loginActivity = new Intent(this,loginActivity.class);
         registerActivity = new Intent(this,registerActivity.class);
         userListActivity= new Intent(this,UserListActivity.class);
+        OrdersListActivity=new Intent(this, com.example.thelittlebaker.OrdersListActivity.class);
 
         AlertDialog.Builder builder= new AlertDialog.Builder(this);
         builder.setMessage("are you sure you want to log out?")
@@ -116,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                startActivity(deleteItemActivity);
+            }
+        });
+
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(OrdersListActivity);
             }
         });
 

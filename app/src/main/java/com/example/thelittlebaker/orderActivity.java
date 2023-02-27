@@ -6,20 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class orderActivity extends AppCompatActivity {
 
-    Button pralinesBtn,cookiesBtn,saltyBtn,stripeCakesBtn,specialBtn,logOutBtn,cartBtn,paymentBtn,saveBtn;
-    Intent Ipralines,IsaltyCookies,Ispecial,IstripeCakes,Icookies,Ilogin,Icart,Ipayment;
+    Button pralinesBtn,cookiesBtn,saltyBtn,stripeCakesBtn,specialBtn,logOutBtn,cartBtn,paymentBtn,deleteUserBtn;
+    Intent Ipralines,IsaltyCookies,Ispecial,IstripeCakes,Icookies,Ilogin,Icart,Ipayment,Imain;
+    FloatingActionButton fab, waze, insta;
+    TextView sorry;
+
 
 
 
@@ -29,7 +32,7 @@ public class orderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-
+        sorry=findViewById(R.id.sorryTextOrder);
         pralinesBtn=findViewById(R.id.orderPralinesBtn);
         cookiesBtn=findViewById(R.id.orderCookiesBtn);
         saltyBtn=findViewById(R.id.orderSaltyBtn);
@@ -38,7 +41,10 @@ public class orderActivity extends AppCompatActivity {
         logOutBtn=findViewById(R.id.logOutBtn);
         cartBtn=findViewById(R.id.cartBtn);
         paymentBtn=findViewById(R.id.paymentBtn);
-        saveBtn=findViewById(R.id.saveBtn);
+        deleteUserBtn=findViewById(R.id.deleteUserBtn);
+        fab=findViewById(R.id.gotocartbtnOrder);
+        waze = findViewById(R.id.wazeBtnOrder);
+        insta = findViewById(R.id.instaBtnOrder);
 
         Ipralines= new Intent(this,pralinesListActivity.class);
         IsaltyCookies= new Intent(this, saltyListActivity.class);
@@ -48,28 +54,39 @@ public class orderActivity extends AppCompatActivity {
         Ilogin=new Intent(this,loginActivity.class);
         Icart=new Intent(this,cartActivity.class);
         Ipayment=new Intent(this,paymentActivity.class);
+        Imain=new Intent(this,MainActivity.class);
 
-//        Log.d("FB",String.valueOf(LoggedInUser.orderList.size()));
+        AlertDialog.Builder readyOrderBuilder = new AlertDialog.Builder(this);
+        readyOrderBuilder.setMessage("your order is ready");
+
+
+        readyOrderBuilder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                OrderFBHelper.deleteOrder(LoggedInUser.loggedUser.getOrderId());
+            }
+        });
+
+
+        boolean myOrderIsReady=LoggedInUser.cheakIfMyOrderReady();
+
+        if (myOrderIsReady)
+            readyOrderBuilder.show();
 
         if (LoggedInUser.canOrder){
-            saveBtn.setVisibility(View.INVISIBLE);
+            sorry.setVisibility(View.INVISIBLE);
         }
         else{
-            saveBtn.setVisibility(View.VISIBLE);
+            sorry.setVisibility(View.VISIBLE);
             paymentBtn.setVisibility(View.INVISIBLE);
         }
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
+
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (LoggedInUser.orderList.size()==0)
-                    Toast.makeText(orderActivity.this,"you didn't order Nothing",Toast.LENGTH_LONG).show();
-                else{
-                    LoggedInUser.loggedUser.setLastOrder(LoggedInUser.orderList);
-                    FirebaseHelper.update();
-                }
-
-
+                finish();
+                startActivity(new Intent(getBaseContext(), cartActivity.class));
             }
         });
 
@@ -154,6 +171,23 @@ public class orderActivity extends AppCompatActivity {
             }
         });
 
+        deleteUserBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseHelper.deleteUser(LoggedInUser.loggedUser);
+                LoggedInUser.loggedUser=null;
+                Toast.makeText(orderActivity.this, "user deleted", Toast.LENGTH_SHORT).show();
+                startActivity(Imain);
+            }
+        });
+
+        waze.setOnClickListener(view -> {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://waze.com/ul/hsvc7f0gth")));
+        });
+
+        insta.setOnClickListener(view ->{
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/tthelittlebaker?igshid=Yzg5MTU1MDY=")));
+        });
 
     }
 }

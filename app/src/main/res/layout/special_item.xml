@@ -2,119 +2,143 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/allbg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:id="@+id/detalisSpecial"
-        android:layout_width="176dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:id="@+id/inputText"
+        android:layout_width="112dp"
+        android:layout_height="99dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/writeOnCake"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgSpecial"
+        app:layout_constraintVertical_bias="0.019" />
+
+    <EditText
+        android:id="@+id/writeOnCake"
+        android:layout_width="196dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="71dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.753"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSpecial"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <EditText
+        android:id="@+id/numberInput"
+        android:layout_width="194dp"
+        android:layout_height="73dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.835"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSpecial"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <TextView
+                android:id="@+id/detalisSpecial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgSpecial"
-        android:layout_width="175dp"
-        android:layout_height="108dp"
+        android:layout_width="149dp"
+        android:layout_height="97dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detalisSpecial"
-        app:srcCompat="@drawable/common_full_open_on_phone" />
-
-    <Button
-        android:id="@+id/plusSpecialBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
-        android:text="+"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detalisSpecial" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/minusSpecialBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
-        android:text="-"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_color"
+        android:backgroundTint="@color/design_default_color_error"
+        android:drawableTop="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.776"
+        app:layout_constraintHorizontal_bias="0.768"
         app:layout_constraintStart_toEndOf="@+id/plusSpecialBtn"
-        app:layout_constraintTop_toBottomOf="@+id/detalisSpecial" />
+        app:layout_constraintTop_toBottomOf="@+id/numberInput"
+        app:layout_constraintVertical_bias="0.122" />
 
     <TextView
         android:id="@+id/amountSpecialOrder"
-        android:layout_width="25dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="0"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/minusSpecialBtn"
-        app:layout_constraintHorizontal_bias="0.562"
-        app:layout_constraintStart_toEndOf="@+id/plusSpecialBtn"
-        app:layout_constraintTop_toBottomOf="@+id/imgSpecial" />
+        app:layout_constraintHorizontal_bias="0.683"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberInput"
+        app:layout_constraintVertical_bias="0.167" />
+
+    <Button
+        android:id="@+id/plusSpecialBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_color"
+        android:backgroundTint="@color/teal_200"
+        android:drawableTop="@android:drawable/ic_menu_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberInput"
+        app:layout_constraintVertical_bias="0.122" />
 
     <Button
         android:id="@+id/addToCartSpecialBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="add to cart"
+        android:layout_marginTop="48dp"
+        android:text="Add to cart"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amountSpecialOrder" />
 
-    <EditText
-        android:id="@+id/writeOnCake"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/minusSpecialBtn"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/plusSpecialBtn"
-        app:layout_constraintTop_toBottomOf="@+id/imgSpecial" />
-
-    <TextView
-        android:id="@+id/inputText"
-        android:layout_width="115dp"
-        android:layout_height="53dp"
-        android:layout_marginEnd="48dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/plusSpecialBtn"
-        app:layout_constraintEnd_toStartOf="@+id/writeOnCake"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/numberInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgSpecial" />
-
     <RatingBar
         android:id="@+id/ratingSpecial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="239dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:progressTint="#FFEB3B"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addToCartSpecialBtn" />
 
@@ -122,9 +146,13 @@
         android:id="@+id/rankSpecialBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_orange_light"
         android:text="rank"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingSpecial" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

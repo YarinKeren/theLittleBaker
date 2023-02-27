@@ -13,141 +13,165 @@
         android:theme="@style/Theme.TheLittleBaker"
         tools:targetApi="31">
         <activity
+            android:name=".OrdersListActivity"
+            android:exported="false"
+            android:theme="@style/DemoTheme"/>
+        <activity
             android:name=".paymentActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".cartActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".deleteItemActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".specialListActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".stripeCakesListActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".saltyListActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".cookiesListActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".pralinesListActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".orderActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".UserListActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".addStripeCakesActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".addSpecialActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".addSaltyActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".addPralinesActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".RecoveryActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".loginActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".addCookiesActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".addItemActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".registerActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/DemoTheme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/DemoTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

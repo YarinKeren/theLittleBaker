@@ -53,6 +53,11 @@ public class StripeCakesAdapter extends ArrayAdapter {
         ratingBar.setRating(buffer.get(position).getRatingAmount());
         minus.setVisibility(View.INVISIBLE);
 
+        if(!LoggedInUser.canOrder) {
+            plus.setVisibility(View.INVISIBLE);
+            addToCart.setVisibility(View.INVISIBLE);
+        }
+
         rank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,13 +96,12 @@ public class StripeCakesAdapter extends ArrayAdapter {
                 buffer.get(position).setDetails("");
                 if(buffer.get(position).getOrderAmount()==0)
                     Toast.makeText(getContext().getApplicationContext(), "You have not selected a quantity to order",Toast.LENGTH_LONG).show();
-                else{
-                    if (LoggedInUser.isInOrderList(buffer.get(position)))
+                else if (LoggedInUser.isInOrderList(buffer.get(position)))
                         buffer.get(position).setOrderAmount(buffer.get(position).getOrderAmount());
-                    else
-                        LoggedInUser.orderList.add(buffer.get(position));
-                    Toast.makeText(getContext().getApplicationContext(), buffer.get(position).getName()+" Added to cart",Toast.LENGTH_LONG).show();
-                }
+                else
+                    LoggedInUser.orderList.add(buffer.get(position));
+                Toast.makeText(getContext().getApplicationContext(), buffer.get(position).getName()+" Added to cart",Toast.LENGTH_LONG).show();
+
             }
         });
 

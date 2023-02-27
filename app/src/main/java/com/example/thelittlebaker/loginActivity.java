@@ -22,8 +22,8 @@ public class loginActivity extends AppCompatActivity {
     SaltyFBHelper saltyDB;
     SpecialFBHelper specialDB;
     StripeCakesFBHelper stripeCakesDB;
-
-    Handler h,h1,h2,h3,h4,h5;
+     OrderFBHelper orderDB;
+    Handler h,h1,h2,h3,h4,h5,h6;
     TextView recover;
 
     @Override
@@ -37,6 +37,7 @@ public class loginActivity extends AppCompatActivity {
         saltyDB= new SaltyFBHelper("Salty");
         specialDB= new SpecialFBHelper("Special");
         stripeCakesDB=new StripeCakesFBHelper("StripeCakes");
+        orderDB=new OrderFBHelper("Orders");
 
         singIn = findViewById(R.id.signIn);
         name = findViewById(R.id.name);
@@ -109,6 +110,16 @@ public class loginActivity extends AppCompatActivity {
                         Log.d("FB","the StripeCakesList size is "+LoggedInUser.stripeCakesList.size());
                     }
                 };
+
+                Thread t6=new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        LoggedInUser.prepareOrderList();
+                        Log.d("FB","the orderList size is "+LoggedInUser.ordersList.size());
+                    }
+                };
+
                 Thread t = new Thread() {
                     @Override
                     public void run() {
@@ -143,6 +154,8 @@ public class loginActivity extends AppCompatActivity {
                 h4.postDelayed(t4,1000);
                 h5=new Handler();
                 h5.postDelayed(t5,1000);
+                h6=new Handler();
+                h6.postDelayed(t6,1000);
 
             }
         });

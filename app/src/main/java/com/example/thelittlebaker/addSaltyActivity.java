@@ -74,7 +74,7 @@ public class addSaltyActivity extends AppCompatActivity {
                 else {
                     Salty temp = new Salty(productName, productPrice, productAmount);
                     temp.setDetails(" ");
-                    Toast.makeText(addSaltyActivity.this,"succes",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addSaltyActivity.this,"succses",Toast.LENGTH_SHORT).show();
                     if(temp!=null) {
                         Log.d("FB","object is ready");
                         boolean status = SaltyFBHelper.upload(temp);

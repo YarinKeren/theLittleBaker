@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -29,15 +30,30 @@ public class UserAdapter  extends ArrayAdapter {
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
         TextView user,pass;
         CheckBox isAdmin;
+        Button deleteUser;
 
         user=convertView.findViewById(R.id.lvuser);
         pass=convertView.findViewById(R.id.lvpass);
         isAdmin=convertView.findViewById(R.id.lvcheck);
+        deleteUser=convertView.findViewById(R.id.deleteUserBtn2);
+
+        if (buffer.get(position).getAcecssLevel()==1)
+            deleteUser.setVisibility(View.INVISIBLE);
+        else
+            isAdmin.setVisibility(View.INVISIBLE);
 
         user.setText(buffer.get(position).getUserName());
         pass.setText(buffer.get(position).getPassword());
         isAdmin.setEnabled(false);
         isAdmin.setChecked(buffer.get(position).getAcecssLevel()==1);
+
+        deleteUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseHelper.deleteUser(buffer.get(position));
+                notifyDataSetChanged();
+            }
+        });
 
         return  convertView;
 

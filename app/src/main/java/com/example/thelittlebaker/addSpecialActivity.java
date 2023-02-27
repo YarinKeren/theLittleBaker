@@ -73,7 +73,7 @@ public class addSpecialActivity extends AppCompatActivity {
                 else {
 
                         Special temp = new Special(productName, productPrice);
-                    Toast.makeText(addSpecialActivity.this,"succes",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addSpecialActivity.this,"succses",Toast.LENGTH_SHORT).show();
                     if(temp!=null) {
                         Log.d("FB","object is ready");
                         boolean status = SpecialFBHelper.upload(temp);

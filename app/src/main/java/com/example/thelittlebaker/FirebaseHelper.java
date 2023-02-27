@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,17 +20,13 @@ public class FirebaseHelper {
     public static DatabaseReference myRef;
     public static List<Map<String,String>> fromDBList;
     public static List<Map<String,Long>> fromDBNums;
-    public static List<Map<String,String>>fromDBPati;
-    public static List<Map<String,Long>>fromDBPatiNums;
-    public static List<String> fromDBRef;
-    public static List<String> fromDBPatiRef;
 
-    //public static List<User> dbUserList;
+    public static List<String> fromDBRef;
+
 
     public FirebaseHelper(final String path){
         db = FirebaseDatabase.getInstance();
         myRef = db.getReference(path);
-
         FirebaseHelper.myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -41,11 +38,9 @@ public class FirebaseHelper {
                     fromDBList.add((Map) data.getValue());
                     fromDBRef.add(data.getKey());
                     fromDBNums.add((Map) data.getValue());
-
                 }
                 Log.d("FB", "onDataChange: Done downloading. ");
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -92,8 +87,6 @@ public class FirebaseHelper {
                     LoggedInUser.loggedUser=u;
                     LoggedInUser.canHeOrder();
                     LoggedInUser.orderList=new ArrayList<>();
-                    downloadOrderList();
-
                     return true;
                 }
             }
@@ -119,50 +112,17 @@ public class FirebaseHelper {
         return false;
     }
 
-    public static void update(){
-        if(myRef != null){
+    public static void deleteUser(User user){
+        if (myRef!=null){
             try{
-                myRef.child(LoggedInUser.loggedUser.getFbId()).child("lastOrder").setValue(LoggedInUser.loggedUser.getLastOrder());
-                Log.d("FB","List uploaded");
+                myRef.child(user.getFbId()).removeValue();
+                LoggedInUser.dbUserList.remove(user);
+                Log.d("FB","user deleted");
+
             }catch (Exception e){
                 Log.e("FB",String.valueOf(e));
             }
         }
-
-    }
-
-
-    public static void downloadOrderList(){
-        myRef.child(LoggedInUser.loggedUser.getFbId()).child("lastOrder").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                fromDBPati=new ArrayList<>();
-                fromDBPatiNums=new ArrayList<>();
-                fromDBPatiRef=new ArrayList<>();
-
-                for( DataSnapshot item: snapshot.getChildren()){
-                    fromDBPati.add((Map<String, String>) item.getValue());
-                    fromDBPatiNums.add((Map<String, Long>) item.getValue());
-                    fromDBPatiRef.add(item.getKey());
-                }
-                Log.d("FB","end to download the order list");
-                List<Patisserie>temp=new ArrayList<>();
-                for (int i = 0; i < fromDBPati.size(); i++) {
-                    Patisserie patisserie=new Patisserie(fromDBPati.get(i).get("name"),fromDBPatiNums.get(i).get("price"), Math.toIntExact(fromDBPatiNums.get(i).get("orderAmount")),fromDBPati.get(i).get("writeOnCake"),fromDBPatiRef.get(i));
-                    temp.add(patisserie);
-                }
-                LoggedInUser.orderList=temp;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public static void deleteFromOrderList(Patisserie patisserie){
-        myRef.child(LoggedInUser.loggedUser.getFbId()).child("lastOrder").child(patisserie.getId()).removeValue();
     }
 }
 

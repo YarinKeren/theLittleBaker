@@ -18,7 +18,7 @@ public class cartActivity extends AppCompatActivity {
 
     ListView cartListView;
     TextView totalPayment;
-    Button paymentBtn,saveOrderBtn;
+    Button paymentBtn;
     Intent Ipayment;
 
 
@@ -35,31 +35,20 @@ public class cartActivity extends AppCompatActivity {
         cartListView=findViewById(R.id.cartListView);
         totalPayment=findViewById(R.id.totalPayment);
         paymentBtn=findViewById(id.confirmBtn);
-        saveOrderBtn=findViewById(id.saveOrderBtn);
+
         cartAdapter adapter =new cartAdapter(this,R.layout.cart_list,LoggedInUser.orderList);
 
         cartListView.setAdapter(adapter);
 
         if (LoggedInUser.canOrder){
-            saveOrderBtn.setVisibility(View.INVISIBLE);
+
         }
         else{
-            saveOrderBtn.setVisibility(View.VISIBLE);
+
             paymentBtn.setVisibility(View.INVISIBLE);
         }
 
-        saveOrderBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (LoggedInUser.orderList.size()==0)
-                    Toast.makeText(cartActivity.this,"you didn't order Nothing",Toast.LENGTH_LONG).show();
-                else{
-                    LoggedInUser.loggedUser.setLastOrder(LoggedInUser.orderList);
-                    FirebaseHelper.update();
 
-                }
-            }
-        });
 
 
         for (int i=0;i<LoggedInUser.orderList.size();i++)

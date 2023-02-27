@@ -13,6 +13,10 @@ public class User {
     private List<Patisserie> lastOrder;
 
 
+
+    private String OrderId;
+
+
     public User(String userName, String password, double age, String email,String id) {
         this.userName = userName;
         this.password = password;
@@ -99,12 +103,13 @@ public class User {
     public String getFbId() {
         return fbId;
     }
-    public List<Patisserie> getLastOrder() {
-        return lastOrder;
+
+    public String getOrderId() {
+        return OrderId;
     }
 
-    public void setLastOrder(List<Patisserie> lastOrder) {
-        this.lastOrder = lastOrder;
+    public void setOrderId(String orderId) {
+        OrderId = orderId;
     }
 
     @Override

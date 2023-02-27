@@ -39,6 +39,7 @@ public class SpecialAdapter extends ArrayAdapter {
         Button addToCart,plus,minus,rank;
         RatingBar ratingBar;
         boolean isPie=buffer.get(position).getName().endsWith("pie") || buffer.get(position).getName().endsWith("Pie");
+        boolean isNumCake=buffer.get(position).getName().contains("number");
 
 
 
@@ -55,21 +56,24 @@ public class SpecialAdapter extends ArrayAdapter {
         ratingBar=convertView.findViewById(R.id.ratingSpecial);
         rank=convertView.findViewById(R.id.rankSpecialBtn);
 
+        if(!LoggedInUser.canOrder) {
+            plus.setVisibility(View.INVISIBLE);
+            addToCart.setVisibility(View.INVISIBLE);
+        }
 
-
-        if(buffer.get(position).getName().endsWith("pie")|| buffer.get(position).getName().endsWith("Pie")){
+        if(isPie){
            inputText.setVisibility(View.INVISIBLE);
            writeOnCake.setVisibility(View.INVISIBLE);
            numberInput.setVisibility(View.INVISIBLE);
         }
-        else if (buffer.get(position).getName().startsWith("number")){
+        else if (isNumCake){
             inputText.setVisibility(View.VISIBLE);
             numberInput.setVisibility(View.VISIBLE);
-            inputText.setText("what number would you like the cake number?");
+            inputText.setText("Input a number :");
         }
         else{
             inputText.setVisibility(View.VISIBLE);
-            inputText.setText("What to write down on the cake?");
+            inputText.setText("Insert your text :");
             writeOnCake.setVisibility(View.VISIBLE);
 
         }
@@ -116,12 +120,12 @@ public class SpecialAdapter extends ArrayAdapter {
             @Override
 
             public void onClick(View view) {
-                if(!isPie && buffer.get(position).getName().startsWith("number")) {
+                if(!isPie && isNumCake) {
                     buffer.get(position).setWriteOnCake(numberInput.getText().toString());
                     buffer.get(position).setDetails(numberInput.getText().toString());
                 }
 
-                else if(!isPie && !buffer.get(position).getName().startsWith("number")) {
+                else if(!isPie && !isNumCake) {
                     buffer.get(position).setWriteOnCake(writeOnCake.getText().toString());
                     buffer.get(position).setDetails(writeOnCake.getText().toString());
                 }
@@ -131,11 +135,11 @@ public class SpecialAdapter extends ArrayAdapter {
                     Toast.makeText(getContext().getApplicationContext(), "You have not selected a quantity to order",Toast.LENGTH_LONG).show();
 
 
-                if(!isPie && buffer.get(position).getName().startsWith("number")) {
+                if(!isPie && isNumCake) {
                     LoggedInUser.orderList.add(new Special(buffer.get(position).getName(), (int) buffer.get(position).getPrice(), buffer.get(position).getOrderAmount(), numberInput.getText().toString()));
                     buffer.get(position).setOrderAmount(buffer.get(position).getOrderAmount()-1);
                     }
-                else if (!isPie && !buffer.get(position).getName().startsWith("number")) {
+                else if (!isPie && !isNumCake) {
                      LoggedInUser.orderList.add(new Special(buffer.get(position).getName(), (int) buffer.get(position).getPrice(), buffer.get(position).getOrderAmount(), writeOnCake.getText().toString()));
                      buffer.get(position).setOrderAmount(buffer.get(position).getOrderAmount()-1);
                     }
@@ -143,7 +147,8 @@ public class SpecialAdapter extends ArrayAdapter {
                      LoggedInUser.orderList.add(buffer.get(position));
                      buffer.get(position).setOrderAmount(buffer.get(position).getOrderAmount()-1);
                     }
-                 Toast.makeText(getContext().getApplicationContext(), buffer.get(position).getName()+" Added to cart",Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getContext().getApplicationContext(), buffer.get(position).getName()+" Added to cart",Toast.LENGTH_LONG).show();
 
 
             }

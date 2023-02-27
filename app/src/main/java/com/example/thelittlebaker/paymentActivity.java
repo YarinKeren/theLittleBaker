@@ -58,7 +58,7 @@ public class paymentActivity extends AppCompatActivity {
         for (int i=0;i<12;i++)
             monthList.add(i+1);
         for (int j = 0; j < 8; j++)
-            yearList.add(2022+j);
+            yearList.add(2023+j);
 
         ArrayAdapter<Integer> monthAdapter
                 =new ArrayAdapter<Integer>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
@@ -131,11 +131,14 @@ public class paymentActivity extends AppCompatActivity {
                         Toast.makeText(paymentActivity.this, "The card month has expired", Toast.LENGTH_SHORT).show();
                     }
                 }
-               else//if everything went good
-                Toast.makeText(paymentActivity.this, "The payment went through successfully", Toast.LENGTH_SHORT).show();
-
-
-
+               //if everything went good
+               else{
+                    Toast.makeText(paymentActivity.this, "The payment went through successfully", Toast.LENGTH_SHORT).show();
+                    String orderSt=LoggedInUser.createOrderSt();
+                    String name=LoggedInUser.loggedUser.getUserName();
+                    Order order=new Order(name,orderSt);
+                    OrderFBHelper.uploadOrder(order);
+                }
             }
         });
 

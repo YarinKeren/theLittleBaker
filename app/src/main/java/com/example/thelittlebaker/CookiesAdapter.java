@@ -51,6 +51,11 @@ public class CookiesAdapter  extends ArrayAdapter {
         ratingBar.setRating(buffer.get(position).getRatingAmount());
         minus.setVisibility(View.INVISIBLE);
 
+        if(!LoggedInUser.canOrder) {
+            plus.setVisibility(View.INVISIBLE);
+            addToCart.setVisibility(View.INVISIBLE);
+        }
+
         rank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,15 +93,19 @@ public class CookiesAdapter  extends ArrayAdapter {
             @Override
             public void onClick(View view) {
                 buffer.get(position).setDetails("");
-                if(buffer.get(position).getOrderAmount()==0)
-                    Toast.makeText(getContext().getApplicationContext(), "You have not selected a quantity to order",Toast.LENGTH_LONG).show();
-                else{
-                    if (LoggedInUser.isInOrderList(buffer.get(position)))
-                        buffer.get(position).setOrderAmount(buffer.get(position).getOrderAmount());
-                    else
-                        LoggedInUser.orderList.add(buffer.get(position));
-                    Toast.makeText(getContext().getApplicationContext(), buffer.get(position).getName()+" Added to cart",Toast.LENGTH_LONG).show();
+                if(buffer.get(position).getOrderAmount()==0) {
+                    Toast.makeText(getContext().getApplicationContext(), "You have not selected a quantity to order", Toast.LENGTH_LONG).show();
+                    return;
                 }
+                else if (LoggedInUser.isInOrderList(buffer.get(position))){
+                    Toast.makeText(getContext().getApplicationContext(), "you all ready order this item", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else {
+                    LoggedInUser.orderList.add(buffer.get(position));
+                    Toast.makeText(getContext().getApplicationContext(), buffer.get(position).getName() + " Added to cart", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
