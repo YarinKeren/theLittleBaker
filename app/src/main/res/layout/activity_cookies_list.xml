@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="@+id/wazeBtnCookies"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.954"
-        app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/wazeBtnCookies"
@@ -26,12 +27,13 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/gotocartbtnCookies"
-        app:layout_constraintEnd_toEndOf="@+id/floatingActionButton3"
+        app:layout_constraintEnd_toEndOf="@+id/instaBtnCookies"
         app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toStartOf="@+id/instaBtnCookies"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.972"
-        app:srcCompat="@drawable/wazelogo" />
+        app:srcCompat="@drawable/wazelogo"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/instaBtnCookies"
@@ -44,7 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976"
-        app:srcCompat="@drawable/instagramlogo" />
+        app:srcCompat="@drawable/instagramlogo"
+        tools:ignore="ContentDescription" />
 
     <ListView
         android:id="@+id/cookiesList"

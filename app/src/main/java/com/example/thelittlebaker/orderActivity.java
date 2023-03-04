@@ -174,10 +174,25 @@ public class orderActivity extends AppCompatActivity {
         deleteUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseHelper.deleteUser(LoggedInUser.loggedUser);
-                LoggedInUser.loggedUser=null;
-                Toast.makeText(orderActivity.this, "user deleted", Toast.LENGTH_SHORT).show();
-                startActivity(Imain);
+                new AlertDialog.Builder(orderActivity.this)
+                        .setTitle("Delete User")
+                        .setMessage("Are you sure you want to delete this user ?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                                FirebaseHelper.deleteUser(LoggedInUser.loggedUser);
+                                LoggedInUser.loggedUser=null;
+                                Toast.makeText(orderActivity.this, "user deleted", Toast.LENGTH_SHORT).show();
+                                startActivity(Imain);
+                            }
+                        })
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
 

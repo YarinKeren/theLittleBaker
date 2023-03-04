@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">theLittleBaker</string>
+    <string name="add_item">add item</string>
+    <string name="user_list">user list</string>
+    <string name="orders">orders</string>
+    <string name="delete_item">delete item</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
 
 
 </resources>
